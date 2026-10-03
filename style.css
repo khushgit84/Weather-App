@@ -1,0 +1,72 @@
+/* ========= SKYPULSE WEATHER — STYLES ========= */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#070b1a;--card:rgba(255,255,255,.04);--card-h:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);--text:#eef0f6;--text2:rgba(238,240,246,.5);
+  --text3:rgba(238,240,246,.25);--accent1:#60a5fa;--accent2:#3b82f6;
+  --glow:rgba(96,165,250,.3);--r:20px;--rs:12px;--t:.3s cubic-bezier(.4,0,.2,1);
+}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;justify-content:center;overflow-x:hidden}
+
+.bg-atmosphere{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.atmo-layer{position:absolute;border-radius:50%;filter:blur(120px);opacity:.3;will-change:transform}
+.atmo-1{width:600px;height:600px;background:#60a5fa;top:-15%;left:-10%;animation:ad1 20s ease-in-out infinite alternate}
+.atmo-2{width:450px;height:450px;background:#818cf8;bottom:-10%;right:-12%;animation:ad2 25s ease-in-out infinite alternate}
+.atmo-3{width:300px;height:300px;background:#06b6d4;top:40%;left:50%;animation:ad3 18s ease-in-out infinite alternate}
+@keyframes ad1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,40px) scale(1.15)}}
+@keyframes ad2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-50px,-60px) scale(1.1)}}
+@keyframes ad3{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-40%,-60%) scale(1.2)}}
+
+.app{position:relative;z-index:1;width:100%;max-width:520px;padding:2rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+
+.header{text-align:center}
+.logo{display:flex;align-items:center;justify-content:center;gap:.5rem}
+.logo-icon{color:var(--accent1)}
+.logo h1{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.search-bar{width:100%;display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:60px;padding:.5rem .75rem .5rem 1rem;backdrop-filter:blur(16px)}
+.search-bar svg{color:var(--text3);flex-shrink:0}
+.search-bar input{flex:1;background:none;border:none;color:var(--text);font-family:inherit;font-size:.9rem;outline:none}
+.search-bar input::placeholder{color:var(--text3)}
+.btn-search{padding:.45rem 1rem;border:none;border-radius:60px;background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:transform var(--t)}
+.btn-search:hover{transform:scale(1.05)}
+
+.main-card{width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;text-align:center;backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.weather-icon-wrap{position:relative}
+.weather-icon{font-size:4.5rem;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.temp{font-size:4rem;font-weight:700;letter-spacing:-.04em;line-height:1}
+.condition{font-size:1rem;color:var(--text2);font-weight:400}
+.location-wrap{display:flex;align-items:center;gap:.3rem;color:var(--text2);font-size:.85rem}
+.date-wrap{font-size:.75rem;color:var(--text3)}
+
+.metrics-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:1rem .5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.25rem;backdrop-filter:blur(12px);transition:background var(--t),transform var(--t)}
+.metric-card:hover{background:var(--card-h);transform:translateY(-2px)}
+.metric-icon{font-size:1.3rem}
+.metric-val{font-size:1rem;font-weight:600}
+.metric-lbl{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
+
+.forecast-section,.hourly-section{width:100%}
+.section-title{font-size:.85rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}
+.forecast-cards{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.5rem;scrollbar-width:none}
+.forecast-cards::-webkit-scrollbar{display:none}
+.forecast-card{flex-shrink:0;min-width:90px;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:1rem .75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.3rem;backdrop-filter:blur(12px);transition:background var(--t),transform var(--t)}
+.forecast-card:hover{background:var(--card-h);transform:translateY(-3px)}
+.fc-day{font-size:.7rem;color:var(--text3);text-transform:uppercase;font-weight:600;letter-spacing:.04em}
+.fc-icon{font-size:1.5rem}
+.fc-temp{font-size:.95rem;font-weight:600}
+.fc-low{font-size:.7rem;color:var(--text3)}
+
+.hourly-chart{display:flex;align-items:flex-end;gap:6px;height:140px;padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);backdrop-filter:blur(12px)}
+.hour-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.hour-bar{width:100%;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--accent1),var(--accent2));min-height:4px;transition:height .6s cubic-bezier(.4,0,.2,1)}
+.hour-label{font-size:.55rem;color:var(--text3);white-space:nowrap}
+.hour-temp{font-size:.6rem;color:var(--text2);font-weight:600}
+
+@media(max-width:480px){
+  .app{padding:1.5rem 1rem 2.5rem;gap:1.25rem}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .temp{font-size:3rem}
+}
